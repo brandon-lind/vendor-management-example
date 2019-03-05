@@ -35,7 +35,7 @@ namespace VendorManagement.Data.Repos
             using (IDbConnection conn = DBConnection)
             {
                 conn.Open();
-                conn.Execute("INSERT INTO vendors (id, name, location) VALUES (@Id, @Name, @Location);", result);
+                conn.Execute("INSERT INTO vendor (id, name, location) VALUES (@Id, @Name, @Location);", result);
             }
 
             return result;
@@ -46,7 +46,7 @@ namespace VendorManagement.Data.Repos
             using (IDbConnection conn = DBConnection)
             {
                 conn.Open();
-                return conn.Query<Vendor>("SELECT * FROM vendors WHERE deletedAt IS NULL;");
+                return conn.Query<Vendor>("SELECT * FROM vendor WHERE deleted_at IS NULL;");
             }
         }
 
@@ -55,7 +55,7 @@ namespace VendorManagement.Data.Repos
             using (IDbConnection conn = DBConnection)
             {
                 conn.Open();
-                return conn.Query<Vendor>("SELECT * FROM vendors WHERE id=@id AND deletedAt IS NULL;", new { id }).FirstOrDefault();
+                return conn.Query<Vendor>("SELECT * FROM vendor WHERE id=@id AND deleted_at IS NULL;", new { id }).FirstOrDefault();
             }
         }
 
@@ -64,7 +64,7 @@ namespace VendorManagement.Data.Repos
             using (IDbConnection conn = DBConnection)
             {
                 conn.Open();
-                conn.Execute("UPDATE vendors SET deletedAt=@timestamp WHERE id=@id;", new { id, timestamp = DateTime.UtcNow });
+                conn.Execute("UPDATE vendor SET deleted_at=@timestamp WHERE id=@id;", new { id, timestamp = DateTime.UtcNow });
             }
         }
 
@@ -73,7 +73,7 @@ namespace VendorManagement.Data.Repos
             using (IDbConnection conn = DBConnection)
             {
                 conn.Open();
-                conn.Execute("UPDATE vendors SET name=@Name, location=@Location WHERE id=@id AND deletedAt IS NULL;", item);
+                conn.Execute("UPDATE vendor SET name=@Name, location=@Location WHERE id=@id AND deleted_at IS NULL;", item);
             }
         }
     }
