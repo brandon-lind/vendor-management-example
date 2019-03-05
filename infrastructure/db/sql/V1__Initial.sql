@@ -1,14 +1,14 @@
-create table vendors
+create table vendor
 (
 	id uuid not null,
 	name varchar(255) not null,
 	location geometry,
-	deletedAt timestamp
+	deleted_at timestamp
 );
 
-create unique index vendors_id_uindex
-	on vendors (id);
+create unique index vendor_id_uindex
+	on vendor (id);
 
-alter table vendors
-	add constraint vendors_pk
+alter table vendor
+	add constraint vendor_pk
 		primary key (id);
