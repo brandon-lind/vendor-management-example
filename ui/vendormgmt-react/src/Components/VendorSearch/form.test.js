@@ -14,7 +14,7 @@ describe('Vendor Search <SearchForm />', () => {
     expect(component.find('Button').length).toBe(1);
   });
   
-  it('should pass back the search terms when the search form is submitted', () => {
+  it('should pass back the search terms when the search form is submitted and a callback function is passed in', () => {
     const onSearchFn = jest.fn();
     const component = setup({
       onSearch: onSearchFn

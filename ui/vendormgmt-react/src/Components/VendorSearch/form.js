@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, FormGroup, InputGroupAddon, Input } from 'reactstrap';
+import { Button, Form, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 class SearchForm extends Component {
   constructor(props){
@@ -27,7 +27,10 @@ class SearchForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSearch(this.state);
+
+    if (this.props.onSearch) {
+      this.props.onSearch(this.state);
+    }
   };
 
   render() {
@@ -35,12 +38,12 @@ class SearchForm extends Component {
 
     return (
         <Form onSubmit={(e) => this.handleSubmit(e) }>
-            <FormGroup>
+            <InputGroup>
               <Input placeholder="Search..." name="searchTerms" value={searchTerms} onChange={(e) => {this.handleChange(e)}} />
               <InputGroupAddon addonType="append">
-                <Button color="primary">Go</Button>
+                <Button color="primary"><i className="fa fa-search"></i></Button>
               </InputGroupAddon>
-            </FormGroup>
+            </InputGroup>
         </Form>
       );
     };
