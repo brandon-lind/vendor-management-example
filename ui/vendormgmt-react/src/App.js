@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import Masthead from './Components/Masthead';
+import VendorSearchResultsPage from './Pages/VendorSearch';
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class App extends Component {
       <>
         <Masthead />
         <Container>
-
+          <VendorSearchResultsPage />
         </Container>
       </>
     );
