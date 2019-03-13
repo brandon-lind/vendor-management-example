@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import VendorSearchForm from './form';
+import SearchForm from './form';
 
 const setup = (props={}) => {
-  return shallow(<VendorSearchForm {...props} />);
+  return shallow(<SearchForm {...props} />);
 };
 
-describe('<VendorSearchForm />', () => {
+describe('Vendor Search <SearchForm />', () => {
   it('should render with a form, input field, and a submit button', () => {
     const component = setup();
     expect(component.find('Form').length).toBe(1);

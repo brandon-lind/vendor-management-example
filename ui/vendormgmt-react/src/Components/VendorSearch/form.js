@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, FormGroup, InputGroupAddon, Input } from 'reactstrap';
 
-class VendorSearchForm extends Component {
+class SearchForm extends Component {
   constructor(props){
     super(props);
 
@@ -46,8 +46,8 @@ class VendorSearchForm extends Component {
     };
 };
 
-VendorSearchForm.propTypes = {
+SearchForm.propTypes = {
   onSearch: PropTypes.func
 };
 
-export default VendorSearchForm;
+export default SearchForm;
