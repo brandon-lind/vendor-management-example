@@ -35,7 +35,7 @@ class Masthead extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav navbar className="ml-auto">
             <NavItem>
-              <NavLink href="/vendor/add"><i className="fa fa-plus-circle"></i> Add Vendor</NavLink>
+              <NavLink href="/vendor/add"><i className="fa fa-plus-circle"></i> Vendor</NavLink>
             </NavItem>
             <NavItem>
               <VendorSearchForm />

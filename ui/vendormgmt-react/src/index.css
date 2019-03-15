@@ -1,6 +1,7 @@
 html,body {
   font-family: 'Montserrat', Helvetica, sans-serif;
   font-size: 0.95rem;
+  padding-bottom: 2rem;
 }
 
 @media (max-width: 575px) {
