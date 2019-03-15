@@ -26,6 +26,11 @@ class App extends Component {
         {code:'ABC', name:'ABC Vendor', location: '-32.1234,90.123', isActive: true},
         {code:'ADV001', name:'Advance Auto Parts Vendor', location: '-38.456,88.123', isActive: true},
         {code:'JB0123', name:'Jim Bob Vendor', location: '-42.756,72.987', isActive: false},
+        {code:'JB0123', name:'Jim Bob Vendor', location: '-42.756,72.987', isActive: false},
+        {code:'JB0123', name:'Jim Bob Vendor', location: '-42.756,72.987', isActive: false},
+        {code:'JB0123', name:'Jim Bob Vendor', location: '-42.756,72.987', isActive: false},
+        {code:'JB0123', name:'Jim Bob Vendor', location: '-42.756,72.987', isActive: false},
+        {code:'JB0123', name:'Jim Bob Vendor', location: '-42.756,72.987', isActive: false},
         {code:'XYZ4', name:'XYZ Vendor', location: '-28.159,78.123', isActive: true}
       ]
     };
@@ -39,10 +44,10 @@ class App extends Component {
           <div className="app-content">
             <VendorSearchResultsPage searchTerms={search.searchTerms} searchResults={search.searchResults} />
           </div>
-          <footer>
-            <p className="text-center small">&copy; 2019 Brandon Lind</p>
-          </footer>
         </Container>
+        <footer className="fixed-bottom bg-light border-top p-1">
+          <p className="text-center small mb-0">&copy; 2019 Brandon Lind</p>
+        </footer>
       </div>
     );
   }

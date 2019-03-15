@@ -9,7 +9,6 @@ import {
   NavLink } from 'reactstrap';
 import VendorSearchForm from '../VendorSearch/form';
 import logo from '../../Assets/logo.png';
-import './index.css';
 
 class Masthead extends Component {
   constructor(props) {
