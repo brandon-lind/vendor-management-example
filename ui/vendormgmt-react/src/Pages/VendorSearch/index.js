@@ -1,23 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ResultsGrid from '../../Components/VendorSearch/resultGrid';
 
 const SearchResultPage = (props) => {
+  const {searchTerms, searchResults} = props;
+
   return (
     <>
       <h1>Search Results</h1>
-      <h2>&ldquo;{props.searchTerms}&rdquo;</h2>
+      <h2>&ldquo;{searchTerms}&rdquo;</h2>
+      <ResultsGrid items={searchResults} />
     </>
   );
 };
 
 SearchResultPage.prototypes = {
   searchTerms: PropTypes.string,
-  searchResults: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.string,
-    name: PropTypes.string,
-    location: PropTypes.string,
-    isActive: PropTypes.bool
-  }))
+  searchResults: PropTypes.array
 };
 
 export default SearchResultPage;

@@ -34,12 +34,12 @@ class SearchForm extends Component {
   };
 
   render() {
-    const {searchTerms} = this.state;
+    const {searchTerms } = this.state;
 
     return (
         <Form onSubmit={(e) => this.handleSubmit(e) }>
             <InputGroup>
-              <Input placeholder="Search..." name="searchTerms" value={searchTerms} onChange={(e) => {this.handleChange(e)}} />
+              <Input onChange={(e) => {this.handleChange(e)}} value={searchTerms} placeholder="Search..." name="searchTerms" />
               <InputGroupAddon addonType="append">
                 <Button color="primary"><i className="fa fa-search"></i></Button>
               </InputGroupAddon>

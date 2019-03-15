@@ -17,7 +17,8 @@ describe('Vendor Search <ResultGrid />', () => {
     component = null;
   });
 
-  it('should render the search results grid', () => {
-    expect(component.find('div').length).toBe(1);
+  it('should render the search results grid with 4 columns', () => {
+    expect(component.find('Table').length).toBe(1);
+    expect(component.find('th').length).toBe(4);
   });
 });

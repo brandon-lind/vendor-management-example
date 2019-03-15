@@ -20,13 +20,30 @@ class App extends Component {
   }
 
   render() {
+    const search = {
+      searchTerms: 'test',
+      searchResults: [
+        {code:'ABC', name:'ABC Vendor', location: '-32.1234,90.123', isActive: true},
+        {code:'ADV001', name:'Advance Auto Parts Vendor', location: '-38.456,88.123', isActive: true},
+        {code:'JB0123', name:'Jim Bob Vendor', location: '-42.756,72.987', isActive: false},
+        {code:'XYZ4', name:'XYZ Vendor', location: '-28.159,78.123', isActive: true}
+      ]
+    };
+
     return (
-      <>
-        <Masthead />
-        <Container>
-          <VendorSearchResultsPage />
+      <div className="app">
+        <header>
+          <Masthead />
+        </header>
+        <Container fluid>
+          <div className="app-content">
+            <VendorSearchResultsPage searchTerms={search.searchTerms} searchResults={search.searchResults} />
+          </div>
+          <footer>
+            <p className="text-center small">&copy; 2019 Brandon Lind</p>
+          </footer>
         </Container>
-      </>
+      </div>
     );
   }
 }
