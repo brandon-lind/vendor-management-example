@@ -1,0 +1,10 @@
+html,body {
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 575px) {
+  html,body { 
+    min-width: 320px; 
+  }
+}
