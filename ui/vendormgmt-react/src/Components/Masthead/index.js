@@ -8,6 +8,7 @@ import {
   NavItem,
   NavLink } from 'reactstrap';
 import VendorSearchForm from '../VendorSearch/form';
+import './index.css';
 import logo from '../../Assets/logo.png';
 
 class Masthead extends Component {
@@ -29,12 +30,12 @@ class Masthead extends Component {
   render() {
     return (
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/"><img src={logo} alt="Vendor Management" width="30" height="30" className="d-inline-block align-top" /> Vendor Management</NavbarBrand>
+        <NavbarBrand href="/"><img src={logo} alt="Vendor Management" width="30" height="30" className="d-inline-block align-bottom" /> Vendor Management</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav navbar>
+          <Nav navbar className="ml-auto">
             <NavItem>
-              <NavLink href="/vendor/add">Add Vendor</NavLink>
+              <NavLink href="/vendor/add"><i className="fa fa-plus-circle"></i> Add Vendor</NavLink>
             </NavItem>
             <NavItem>
               <VendorSearchForm />

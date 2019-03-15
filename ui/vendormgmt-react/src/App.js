@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import Masthead from './Components/Masthead';
 
-
 class App extends Component {
   constructor(props) {
     super(props);

@@ -6,11 +6,13 @@ const SearchResultPage = (props) => {
   const {searchTerms, searchResults} = props;
 
   return (
-    <>
-      <h1>Search Results</h1>
-      <h2>&ldquo;{searchTerms}&rdquo;</h2>
+    <div className="search-results">
+      <div className="bg-light border-bottom mb-3 p-1">
+        <small>Search Results</small>
+        <p className="m-0 h5">{searchTerms}</p>
+      </div>
       <ResultsGrid items={searchResults} />
-    </>
+    </div>
   );
 };
 
