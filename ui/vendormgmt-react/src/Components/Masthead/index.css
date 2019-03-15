@@ -1,0 +1,9 @@
+.nav-item:not(:last-child) {
+  margin-right: 1rem;
+}
+
+@media (max-width: 575px) {
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+}

@@ -21,7 +21,7 @@ class App extends Component {
 
   render() {
     const search = {
-      searchTerms: 'test',
+      searchTerms: '',
       searchResults: [
         {code:'ABC', name:'ABC Vendor', location: '-32.1234,90.123', isActive: true},
         {code:'ADV001', name:'Advance Auto Parts Vendor', location: '-38.456,88.123', isActive: true},
