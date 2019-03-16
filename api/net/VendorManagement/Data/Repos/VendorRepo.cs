@@ -9,7 +9,7 @@ using VendorManagement.Data.Models;
 
 namespace VendorManagement.Data.Repos
 {
-    public class VendorRepo : IRepository<Vendor>
+    public class VendorRepo : IVendorRepository
     {
         private readonly string connString;
 
@@ -22,6 +22,9 @@ namespace VendorManagement.Data.Repos
         {
             get { return new NpgsqlConnection(connString); }
         }
+
+
+        #region IVendorRepository
 
         public Vendor Add(Vendor item)
         {
@@ -51,6 +54,15 @@ namespace VendorManagement.Data.Repos
             }
         }
 
+        public Vendor FindByCode(string code)
+        {
+            using (IDbConnection conn = DBConnection)
+            {
+                conn.Open();
+                return conn.Query<Vendor>("SELECT * FROM vendor WHERE code=@code AND deleted_at IS NULL;", new { code }).FirstOrDefault();
+            }
+        }
+
         public Vendor FindById(Guid id)
         {
             using (IDbConnection conn = DBConnection)
@@ -69,13 +81,24 @@ namespace VendorManagement.Data.Repos
             }
         }
 
+        public void Remove(string code)
+        {
+            using (IDbConnection conn = DBConnection)
+            {
+                conn.Open();
+                conn.Execute("UPDATE vendor SET deleted_at=@timestamp WHERE code=@code;", new { code, timestamp = DateTime.UtcNow });
+            };
+        }
+
         public void Update(Vendor item)
         {
             using (IDbConnection conn = DBConnection)
             {
                 conn.Open();
-                conn.Execute("UPDATE vendor SET name=@Name, code=@Code, location=@Location WHERE id=@id AND deleted_at IS NULL;", item);
+                conn.Execute("UPDATE vendor SET name=@Name, location=@Location WHERE code=@code AND deleted_at IS NULL;", item);
             }
         }
+
+        #endregion
     }
 }
