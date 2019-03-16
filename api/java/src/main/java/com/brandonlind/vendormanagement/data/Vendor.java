@@ -7,16 +7,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vividsolutions.jts.geom.Geometry;
 
 
 @Entity
 public class Vendor {
 	@Id
+	@JsonIgnore
 	private UUID id;
+
+	@NotNull(message="The vendor code is required")
+	@Size(min=6,max=6,message="The vendor code must be exactly 6 characters")
+	private String code;
 	
-	@NotBlank
+	@NotBlank(message="The vendor name cannot be blank")
+	@NotNull(message="The vendor name is required")
 	private String name;
 	
 	@Column(columnDefinition = "Geometry")
@@ -31,6 +40,14 @@ public class Vendor {
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName() {

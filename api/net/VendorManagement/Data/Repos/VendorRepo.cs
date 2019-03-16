@@ -28,6 +28,7 @@ namespace VendorManagement.Data.Repos
             var result = new Vendor
             {
                 Id = Guid.NewGuid(),
+                Code = item.Code,
                 Location = item.Location,
                 Name = item.Name
             };
@@ -35,7 +36,7 @@ namespace VendorManagement.Data.Repos
             using (IDbConnection conn = DBConnection)
             {
                 conn.Open();
-                conn.Execute("INSERT INTO vendor (id, name, location) VALUES (@Id, @Name, @Location);", result);
+                conn.Execute("INSERT INTO vendor (id, code, name, location) VALUES (@Id, @Code, @Name, @Location);", result);
             }
 
             return result;
@@ -73,7 +74,7 @@ namespace VendorManagement.Data.Repos
             using (IDbConnection conn = DBConnection)
             {
                 conn.Open();
-                conn.Execute("UPDATE vendor SET name=@Name, location=@Location WHERE id=@id AND deleted_at IS NULL;", item);
+                conn.Execute("UPDATE vendor SET name=@Name, code=@Code, location=@Location WHERE id=@id AND deleted_at IS NULL;", item);
             }
         }
     }

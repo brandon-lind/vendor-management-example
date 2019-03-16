@@ -10,6 +10,9 @@ namespace VendorManagement.Data.Models
         public Guid Id { get; set; }
 
         [Required(AllowEmptyStrings =false)]
+        public string Code { get; set; }
+        
+        [Required(AllowEmptyStrings =false)]
         public string Name { get; set; }
 
         public Point Location { get; set; }
