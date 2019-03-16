@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Form, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 class SearchForm extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -14,42 +14,49 @@ class SearchForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = async (e) => {
-    const {target} = e;
-    const name = target.name;
-    const value = target.value;
+  handleChange = async e => {
+    const { name, value } = e.target;
 
     await this.setState({
       [name]: value
     });
-
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
+    const { onSearch } = this.props;
+
     e.preventDefault();
 
-    if (this.props.onSearch) {
-      this.props.onSearch(this.state);
+    if (onSearch) {
+      onSearch(this.state);
     }
   };
 
   render() {
-    const {searchTerms } = this.state;
+    const { searchTerms } = this.state;
 
     return (
-        <Form onSubmit={(e) => this.handleSubmit(e) }>
-            <InputGroup>
-              <Input onChange={(e) => this.handleChange(e)} value={searchTerms} placeholder="Search..." name="searchTerms" />
-              <InputGroupAddon addonType="append">
-                <Button color="primary"><i className="fa fa-search"></i></Button>
-              </InputGroupAddon>
-            </InputGroup>
-        </Form>
-      );
-    };
-};
+      <Form onSubmit={e => this.handleSubmit(e)}>
+        <InputGroup>
+          <Input
+            onChange={e => this.handleChange(e)}
+            value={searchTerms}
+            placeholder="Search..."
+            name="searchTerms"
+          />
+          <InputGroupAddon addonType="append">
+            <Button color="primary">
+              <i className="fa fa-search" />
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </Form>
+    );
+  }
+}
 
 SearchForm.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   onSearch: PropTypes.func
 };
 

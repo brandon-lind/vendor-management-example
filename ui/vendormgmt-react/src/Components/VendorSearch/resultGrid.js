@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { Table } from 'reactstrap';
 import ResultRow from './resultRow';
 
-const ResultGrid = (props) => {
+const ResultGrid = (props = {}) => {
+  const { items } = props;
+
   return (
     <Table striped responsive hover>
       <thead>
@@ -15,17 +17,22 @@ const ResultGrid = (props) => {
         </tr>
       </thead>
       <tbody>
-        {
-          props.items && 
-          props.items.map((item, idx) => <ResultRow item={item} key={idx} />)
-        }
+        {items && items.map(item => <ResultRow item={item} key={item.code} />)}
       </tbody>
     </Table>
   );
 };
 
 ResultGrid.propTypes = {
-  items: PropTypes.array
+  // eslint-disable-next-line react/require-default-props
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      code: PropTypes.string,
+      name: PropTypes.string,
+      location: PropTypes.string,
+      isActive: PropTypes.bool
+    })
+  )
 };
 
 export default ResultGrid;

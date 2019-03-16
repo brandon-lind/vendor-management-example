@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ResultsGrid from '../../Components/VendorSearch/resultGrid';
 
-const SearchResultPage = (props) => {
-  const {searchTerms, searchResults} = props;
+const SearchResultPage = props => {
+  const { searchTerms, searchResults } = props;
 
   return (
     <div className="search-results">
