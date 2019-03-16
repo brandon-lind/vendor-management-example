@@ -39,7 +39,7 @@ class SearchForm extends Component {
     return (
         <Form onSubmit={(e) => this.handleSubmit(e) }>
             <InputGroup>
-              <Input onChange={(e) => {this.handleChange(e)}} value={searchTerms} placeholder="Search..." name="searchTerms" />
+              <Input onChange={(e) => this.handleChange(e)} value={searchTerms} placeholder="Search..." name="searchTerms" />
               <InputGroupAddon addonType="append">
                 <Button color="primary"><i className="fa fa-search"></i></Button>
               </InputGroupAddon>
