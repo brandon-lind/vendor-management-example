@@ -1,9 +1,26 @@
-/*
- * action types
- */
+import { CREATE, REMOVE, SEARCH, SEARCH_RESET, UPDATE } from './types';
 
-export const CREATE = 'CREATE';
-export const REMOVE = 'REMOVE';
-export const SEARCH = 'SEARCH';
-export const SEARCH_RESET = 'SEARCH_RESET';
-export const UPDATE = 'UPDATE';
+export const createAction = vndr => ({
+  type: CREATE,
+  data: { ...vndr }
+});
+
+export const removeAction = vndr => ({
+  type: REMOVE,
+  data: { ...vndr }
+});
+
+export const searchAction = () => ({
+  type: SEARCH,
+  data: []
+});
+
+export const searchResetAction = () => ({
+  type: SEARCH_RESET,
+  data: []
+});
+
+export const updateAction = vndr => ({
+  type: UPDATE,
+  data: { ...vndr }
+});

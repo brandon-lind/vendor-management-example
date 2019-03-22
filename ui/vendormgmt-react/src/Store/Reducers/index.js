@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import searchVendors from './Vendors/search';
+import vendors from './Vendors/index';
+import vendorSearch from './Vendors/search';
 
 export default combineReducers({
-  search: combineReducers({
-    listings: searchVendors
-  })
+  vendors,
+  vendorSearch
 });
