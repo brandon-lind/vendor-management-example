@@ -12,7 +12,7 @@ export const removeAction = vendorCode => ({
 });
 
 export const searchAction = searchTerms => {
-  return (dispatch) => {
+  return dispatch => {
     let items = [];
     const mocks = [
       {
