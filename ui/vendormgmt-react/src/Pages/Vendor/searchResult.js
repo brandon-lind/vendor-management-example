@@ -1,5 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import ResultsGrid from '../../Components/VendorSearch/resultGrid';
 
 const SearchResultPage = props => {
@@ -11,14 +13,16 @@ const SearchResultPage = props => {
         <small>Search Results</small>
         <p className="m-0 h5">{searchTerms}</p>
       </div>
-      <ResultsGrid items={searchResults} />
+      <ResultsGrid items={searchResults || []} />
     </div>
   );
 };
 
-SearchResultPage.prototypes = {
-  searchTerms: PropTypes.string,
-  searchResults: PropTypes.array
-};
+const mapStateToProps = state => ({
+  searchResults: state.search.vendors
+});
 
-export default SearchResultPage;
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(SearchResultPage);

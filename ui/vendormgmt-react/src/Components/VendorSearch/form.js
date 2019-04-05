@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { Button, Form, InputGroup, InputGroupAddon, Input } from 'reactstrap';
+import { searchAction } from '../../Store/Actions/Vendors';
 
 class SearchForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      searchTerms: ''
-    };
-
+    this.searchTerms = '';
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = async e => {
-    const { name, value } = e.target;
+  handleChange = e => {
+    const { value } = e.target;
 
-    await this.setState({
-      [name]: value
-    });
+    this.searchTerms = value;
   };
 
   handleSubmit = e => {
-    const { onSearch } = this.props;
+    const { onSearch, searchVendors } = this.props;
 
     e.preventDefault();
 
+    searchVendors(this.searchTerms);
+
     if (onSearch) {
-      onSearch(this.state);
+      onSearch();
     }
   };
 
   render() {
-    const { searchTerms } = this.state;
+    const { searchTerms } = this.searchTerms;
 
     return (
       <Form onSubmit={e => this.handleSubmit(e)}>
@@ -60,4 +60,17 @@ SearchForm.propTypes = {
   onSearch: PropTypes.func
 };
 
-export default SearchForm;
+const mapStateToProps = state => ({
+  searchResults: state.search.vendors
+});
+
+const mapDispatchToProps = dispatch => ({
+  searchVendors: params => dispatch(searchAction(params))
+});
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(SearchForm);
