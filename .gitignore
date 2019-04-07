@@ -6,5 +6,8 @@
 .idea/
 *.sln.iml
 
+# Node
+node_modules
+
 # OS Specific
 .DS_Store

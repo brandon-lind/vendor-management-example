@@ -1,8 +1,8 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import ResultGrid from './resultGrid';
 
-const setup = (props={}) => {
+const setup = (props = {}) => {
   return shallow(<ResultGrid {...props} />);
 };
 

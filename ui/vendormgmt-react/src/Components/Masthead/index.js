@@ -1,4 +1,7 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -6,7 +9,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  NavLink
+} from 'reactstrap';
 import VendorSearchForm from '../VendorSearch/form';
 import './index.css';
 import logo from '../../Assets/logo.png';
@@ -16,29 +20,51 @@ class Masthead extends Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.showSearchResults = this.showSearchResults.bind(this);
+
     this.state = {
       isOpen: false
     };
   }
 
   toggle() {
+    const { isOpen } = this.state;
+
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !isOpen
     });
   }
 
+  showSearchResults() {
+    const { history } = this.props;
+
+    history.push('/');
+  }
+
   render() {
+    const { isOpen } = this.state;
+
     return (
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/"><img src={logo} alt="Vendor Management" width="30" height="30" className="d-inline-block align-bottom" /> Vendor Management</NavbarBrand>
+        <NavbarBrand tag={Link} to="/">
+          <img
+            src={logo}
+            alt="Vendor Management"
+            width="30"
+            height="30"
+            className="d-inline-block align-bottom"
+          /> Vendor Management
+        </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar>
+        <Collapse isOpen={isOpen} navbar>
           <Nav navbar className="ml-auto">
             <NavItem>
-              <NavLink href="/vendor/add"><i className="fa fa-plus-circle"></i> Vendor</NavLink>
+              <NavLink tag={Link} to="/vendor/add">
+                <i className="fa fa-plus-circle" /> Vendor
+              </NavLink>
             </NavItem>
             <NavItem>
-              <VendorSearchForm />
+              <VendorSearchForm onSearch={this.showSearchResults} />
             </NavItem>
           </Nav>
         </Collapse>
@@ -47,4 +73,4 @@ class Masthead extends Component {
   }
 }
 
-export default Masthead;
+export default withRouter(Masthead);

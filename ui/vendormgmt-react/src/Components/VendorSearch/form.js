@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { Button, Form, InputGroup, InputGroupAddon, Input } from 'reactstrap';
+import { searchAction } from '../../Store/Actions/Vendors';
 
 class SearchForm extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -14,43 +17,72 @@ class SearchForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = async (e) => {
-    const {target} = e;
-    const name = target.name;
-    const value = target.value;
+  handleChange = async evt => {
+    const { value } = evt.target;
 
-    await this.setState({
-      [name]: value
-    });
-
+    this.setState({ searchTerms: value });
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+  handleSubmit = async evt => {
+    const { onSearch, searchVendors } = this.props;
+    const { searchTerms } = this.state;
 
-    if (this.props.onSearch) {
-      this.props.onSearch(this.state);
+    evt.preventDefault();
+
+    await searchVendors(searchTerms);
+
+    if (onSearch) {
+      onSearch();
     }
   };
 
   render() {
-    const {searchTerms } = this.state;
+    const { searchParams } = this.props;
+    const { searchTerms } = this.state;
 
     return (
-        <Form onSubmit={(e) => this.handleSubmit(e) }>
-            <InputGroup>
-              <Input onChange={(e) => this.handleChange(e)} value={searchTerms} placeholder="Search..." name="searchTerms" />
-              <InputGroupAddon addonType="append">
-                <Button color="primary"><i className="fa fa-search"></i></Button>
-              </InputGroupAddon>
-            </InputGroup>
-        </Form>
-      );
-    };
-};
+      <Form onSubmit={e => this.handleSubmit(e)}>
+        <InputGroup>
+          <Input
+            onChange={e => this.handleChange(e)}
+            value={searchTerms}
+            placeholder="Search..."
+            name="searchTerms"
+          />
+          <InputGroupAddon addonType="append">
+            <Button color="primary">
+              <i
+                className={
+                  searchParams.isSearching
+                    ? 'fa fa-spinner fa-spin'
+                    : 'fa fa-search'
+                }
+                aria-hidden="true"
+              />
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </Form>
+    );
+  }
+}
 
 SearchForm.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   onSearch: PropTypes.func
 };
 
-export default SearchForm;
+const mapStateToProps = state => ({
+  searchParams: state.search.vendors
+});
+
+const mapDispatchToProps = dispatch => ({
+  searchVendors: async params => dispatch(searchAction(params))
+});
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(SearchForm);
