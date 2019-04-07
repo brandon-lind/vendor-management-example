@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container } from 'reactstrap';
+// eslint-disable-next-line import/no-named-as-default
 import Masthead from '../Masthead';
 
 const App = (props = {}) => {

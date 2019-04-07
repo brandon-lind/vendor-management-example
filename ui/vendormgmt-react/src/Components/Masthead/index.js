@@ -15,7 +15,7 @@ import VendorSearchForm from '../VendorSearch/form';
 import './index.css';
 import logo from '../../Assets/logo.png';
 
-class Masthead extends Component {
+export class Masthead extends Component {
   constructor(props) {
     super(props);
 

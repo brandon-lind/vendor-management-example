@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Button, Form, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 import { searchAction } from '../../Store/Actions/Vendors';
 
-class SearchForm extends Component {
+export class SearchForm extends Component {
   constructor(props) {
     super(props);
 
