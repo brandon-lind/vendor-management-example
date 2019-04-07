@@ -19,21 +19,19 @@ jobs:
     steps:
       - checkout
 
-      - run: cd ui/vendormgmt-react
-
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "ui/vendormgmt-react/package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      - run: (cd ui/vendormgmt-react/ && npm install)
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ui/vendormgmt-react/node_modules
+          key: v1-dependencies-{{ checksum "ui/vendormgmt-react/package.json" }}
 
       # run tests!
-      - run: npm test
+      - run: (cd ui/vendormgmt-react/ && npm test)
