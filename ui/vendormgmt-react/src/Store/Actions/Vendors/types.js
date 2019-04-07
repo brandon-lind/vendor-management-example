@@ -6,4 +6,5 @@ export const CREATE = 'CREATE';
 export const REMOVE = 'REMOVE';
 export const SEARCH = 'SEARCH';
 export const SEARCH_RESET = 'SEARCH_RESET';
+export const SEARCHING = 'SEARCHING';
 export const UPDATE = 'UPDATE';

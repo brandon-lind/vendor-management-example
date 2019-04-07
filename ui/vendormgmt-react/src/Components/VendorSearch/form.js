@@ -9,23 +9,27 @@ class SearchForm extends Component {
   constructor(props) {
     super(props);
 
-    this.searchTerms = '';
+    this.state = {
+      searchTerms: ''
+    };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = e => {
-    const { value } = e.target;
+  handleChange = async evt => {
+    const { value } = evt.target;
 
-    this.searchTerms = value;
+    this.setState({ searchTerms: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async evt => {
     const { onSearch, searchVendors } = this.props;
+    const { searchTerms } = this.state;
 
-    e.preventDefault();
+    evt.preventDefault();
 
-    searchVendors(this.searchTerms);
+    await searchVendors(searchTerms);
 
     if (onSearch) {
       onSearch();
@@ -33,7 +37,8 @@ class SearchForm extends Component {
   };
 
   render() {
-    const { searchTerms } = this.searchTerms;
+    const { searchParams } = this.props;
+    const { searchTerms } = this.state;
 
     return (
       <Form onSubmit={e => this.handleSubmit(e)}>
@@ -46,7 +51,14 @@ class SearchForm extends Component {
           />
           <InputGroupAddon addonType="append">
             <Button color="primary">
-              <i className="fa fa-search" />
+              <i
+                className={
+                  searchParams.isSearching
+                    ? 'fa fa-spinner fa-spin'
+                    : 'fa fa-search'
+                }
+                aria-hidden="true"
+              />
             </Button>
           </InputGroupAddon>
         </InputGroup>
@@ -61,11 +73,11 @@ SearchForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  searchResults: state.search.vendors
+  searchParams: state.search.vendors
 });
 
 const mapDispatchToProps = dispatch => ({
-  searchVendors: params => dispatch(searchAction(params))
+  searchVendors: async params => dispatch(searchAction(params))
 });
 
 export default compose(

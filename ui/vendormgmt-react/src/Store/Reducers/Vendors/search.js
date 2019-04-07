@@ -1,12 +1,14 @@
-import { SEARCH, SEARCH_RESET } from '../../Actions/Vendors/types';
+import { SEARCH, SEARCH_RESET, SEARCHING } from '../../Actions/Vendors/types';
 
-const initialState = [];
+const initialState = { isSearching: false, terms: '', results: [] };
 
 const vendorSearch = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH:
     case SEARCH_RESET:
-      return action.data || [];
+      return action.payload;
+    case SEARCHING:
+      return { ...initialState, isSearching: true };
     default:
       return state;
   }

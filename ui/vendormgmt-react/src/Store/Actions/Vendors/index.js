@@ -1,18 +1,27 @@
-import { CREATE, REMOVE, SEARCH, SEARCH_RESET, UPDATE } from './types';
+import {
+  CREATE,
+  REMOVE,
+  SEARCH,
+  SEARCH_RESET,
+  SEARCHING,
+  UPDATE
+} from './types';
 import vendorModel from '../../Models/vendor';
 
 export const createAction = vendor => ({
   type: CREATE,
-  data: { ...vendorModel, ...vendor }
+  payload: { ...vendorModel, ...vendor }
 });
 
 export const removeAction = vendorCode => ({
   type: REMOVE,
-  data: vendorCode
+  payload: vendorCode
 });
 
 export const searchAction = searchTerms => {
   return dispatch => {
+    dispatch({ type: SEARCHING });
+
     let items = [];
     const mocks = [
       {
@@ -44,7 +53,7 @@ export const searchAction = searchTerms => {
 
       dispatch({
         type: SEARCH,
-        data: items
+        payload: { terms: searchTerms, results: items, isSearching: false }
       });
     }, 1000);
   };
@@ -52,10 +61,10 @@ export const searchAction = searchTerms => {
 
 export const searchResetAction = () => ({
   type: SEARCH_RESET,
-  data: []
+  payload: { terms: '', results: [], isSearching: false }
 });
 
 export const updateAction = vendor => ({
   type: UPDATE,
-  data: { ...vendorModel, ...vendor }
+  payload: { ...vendorModel, ...vendor }
 });
