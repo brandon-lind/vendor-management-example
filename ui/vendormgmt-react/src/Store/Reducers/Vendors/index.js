@@ -7,9 +7,9 @@ const vendors = (state = initialState, action) => {
     case CREATE:
       return { ...state, ...action.payload };
     case REMOVE:
-      return state.filter(vendor => vendor.code !== action.payload);
+      return state.filter((vendor) => vendor.code !== action.payload);
     case UPDATE:
-      return state.map(vendor => {
+      return state.map((vendor) => {
         if (vendor.code === action.payload.code) {
           return action.payload.code;
         }

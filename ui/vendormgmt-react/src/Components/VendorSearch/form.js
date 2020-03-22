@@ -17,13 +17,13 @@ export class SearchForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = async evt => {
+  handleChange = async (evt) => {
     const { value } = evt.target;
 
     this.setState({ searchTerms: value });
   };
 
-  handleSubmit = async evt => {
+  handleSubmit = async (evt) => {
     const { onSearch, searchVendors } = this.props;
     const { searchTerms } = this.state;
 
@@ -41,10 +41,10 @@ export class SearchForm extends Component {
     const { searchTerms } = this.state;
 
     return (
-      <Form onSubmit={e => this.handleSubmit(e)}>
+      <Form onSubmit={(e) => this.handleSubmit(e)}>
         <InputGroup>
           <Input
-            onChange={e => this.handleChange(e)}
+            onChange={(e) => this.handleChange(e)}
             value={searchTerms}
             placeholder="Search..."
             name="searchTerms"
@@ -72,17 +72,14 @@ SearchForm.propTypes = {
   onSearch: PropTypes.func
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   searchParams: state.search.vendors
 });
 
-const mapDispatchToProps = dispatch => ({
-  searchVendors: async params => dispatch(searchAction(params))
+const mapDispatchToProps = (dispatch) => ({
+  searchVendors: async (params) => dispatch(searchAction(params))
 });
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)(SearchForm);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  SearchForm
+);

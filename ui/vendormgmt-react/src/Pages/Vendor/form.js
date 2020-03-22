@@ -20,7 +20,7 @@ class FormPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = async e => {
+  handleChange = async (e) => {
     const { name, type, checked, value } = e.target;
     const val = type === 'checkbox' ? checked : value;
 
@@ -33,7 +33,7 @@ class FormPage extends Component {
     this.setState(() => this.initialState);
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     const { onSave } = this.props;
 
     e.preventDefault();
@@ -63,13 +63,13 @@ class FormPage extends Component {
           <div className="card-header">Basic Information</div>
           <div className="card-body">
             <Form
-              onSubmit={e => this.handleSubmit(e)}
-              onReset={e => this.handleReset(e)}
+              onSubmit={(e) => this.handleSubmit(e)}
+              onReset={(e) => this.handleReset(e)}
             >
               <FormGroup>
                 <Label for="vendorCode">Code</Label>
                 <Input
-                  onChange={e => this.handleChange(e)}
+                  onChange={(e) => this.handleChange(e)}
                   value={vendorCode}
                   placeholder="Code..."
                   name="code"
@@ -79,7 +79,7 @@ class FormPage extends Component {
               <FormGroup>
                 <Label for="vendorName">Name</Label>
                 <Input
-                  onChange={e => this.handleChange(e)}
+                  onChange={(e) => this.handleChange(e)}
                   value={vendorName}
                   placeholder="Name..."
                   name="name"
@@ -89,7 +89,7 @@ class FormPage extends Component {
               <FormGroup>
                 <Label for="vendorLocation">Location</Label>
                 <Input
-                  onChange={e => this.handleChange(e)}
+                  onChange={(e) => this.handleChange(e)}
                   value={vendorLocation}
                   placeholder="Location..."
                   name="location"
@@ -98,7 +98,7 @@ class FormPage extends Component {
               </FormGroup>
               <FormGroup>
                 <CustomInput
-                  onChange={e => this.handleChange(e)}
+                  onChange={(e) => this.handleChange(e)}
                   type="switch"
                   checked={vendorIsActive}
                   name="isActive"

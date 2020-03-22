@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import {
@@ -53,7 +52,8 @@ export class Masthead extends Component {
             width="30"
             height="30"
             className="d-inline-block align-bottom"
-          /> Vendor Management
+          />{' '}
+          Vendor Management
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>

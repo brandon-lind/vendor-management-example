@@ -8,18 +8,18 @@ import {
 } from './types';
 import vendorModel from '../../Models/vendor';
 
-export const createAction = vendor => ({
+export const createAction = (vendor) => ({
   type: CREATE,
   payload: { ...vendorModel, ...vendor }
 });
 
-export const removeAction = vendorCode => ({
+export const removeAction = (vendorCode) => ({
   type: REMOVE,
   payload: vendorCode
 });
 
-export const searchAction = searchTerms => {
-  return dispatch => {
+export const searchAction = (searchTerms) => {
+  return (dispatch) => {
     dispatch({ type: SEARCHING });
 
     let items = [];
@@ -47,7 +47,7 @@ export const searchAction = searchTerms => {
     ];
 
     setTimeout(() => {
-      items = mocks.filter(mock => {
+      items = mocks.filter((mock) => {
         return mock.name.toLowerCase().includes(searchTerms.toLowerCase());
       });
 
@@ -64,7 +64,7 @@ export const searchResetAction = () => ({
   payload: { terms: '', results: [], isSearching: false }
 });
 
-export const updateAction = vendor => ({
+export const updateAction = (vendor) => ({
   type: UPDATE,
   payload: { ...vendorModel, ...vendor }
 });

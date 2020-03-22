@@ -17,7 +17,8 @@ const ResultGrid = (props = {}) => {
         </tr>
       </thead>
       <tbody>
-        {items && items.map(item => <ResultRow item={item} key={item.code} />)}
+        {items &&
+          items.map((item) => <ResultRow item={item} key={item.code} />)}
       </tbody>
     </Table>
   );
