@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import ResultsGrid from '../../Components/VendorSearch/resultGrid';
 
-const SearchResultPage = props => {
+const SearchResultPage = (props) => {
   const { isSearching, searchTerms, searchResults } = props;
 
   const renderView = () => {
@@ -33,13 +33,10 @@ const SearchResultPage = props => {
   return <div className="search-results">{renderView()}</div>;
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isSearching: state.search.vendors.isSearching,
   searchResults: state.search.vendors.results,
   searchTerms: state.search.vendors.terms
 });
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps)
-)(SearchResultPage);
+export default compose(withRouter, connect(mapStateToProps))(SearchResultPage);

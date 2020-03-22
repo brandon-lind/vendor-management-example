@@ -6,11 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8">
+      <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+      <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Npgsql" Version="4.0.4" />
+    <PackageReference Include="Npgsql" Version="4.1.3.1" />
     <PackageReference Include="Npgsql.GeoJSON" Version="1.0.0" />
-    <PackageReference Include="Dapper" Version="1.50.7" />
+    <PackageReference Include="Dapper" Version="2.0.30" />
   </ItemGroup>
 
   <ItemGroup>

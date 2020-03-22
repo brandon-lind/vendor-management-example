@@ -1,4 +1,4 @@
-package com.brandonlind.vendormanagement;
+package com.brandonlind.vendormanagement.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.brandonlind.vendormanagement.data.Vendor;
-import com.brandonlind.vendormanagement.data.VendorRepo;
+import com.brandonlind.vendormanagement.model.Vendor;
+import com.brandonlind.vendormanagement.service.VendorRepo;
 
 @RestController
 public class VendorController {
@@ -27,12 +27,12 @@ public class VendorController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ResponseEntity<List<Vendor>> index() {
 		List<Vendor> response = new ArrayList<Vendor>();
-		
+
 		try {
 			for(Vendor vendor : repo.findAllByAndDeletedAtIsNull()) {
 				response.add(vendor);
 			}
-			
+
 			return new ResponseEntity<List<Vendor>>(response, HttpStatus.OK);
 		} catch(Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -44,7 +44,7 @@ public class VendorController {
 		try {
 			Vendor vendor = repo.findByCodeAndDeletedAtIsNull(code);
 
-			if(vendor == null) { 
+			if(vendor == null) {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 
@@ -53,7 +53,7 @@ public class VendorController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<Vendor> add(@RequestBody @Valid Vendor vendor) {
 		try {
@@ -61,9 +61,9 @@ public class VendorController {
 
 			// Make sure they don't try add an already deleted vendor (move to service layer eventually)
 			vendor.setDeletedAt(null);
-			
+
 			Vendor response = repo.save(vendor);
-			
+
 			return new ResponseEntity<Vendor>(response, HttpStatus.CREATED);
 		} catch(Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -78,14 +78,14 @@ public class VendorController {
 			if(existingVendor == null) {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
-			
+
 			// Only allow changing of these properties (move to service layer eventually)
 			existingVendor.setName(vendor.getName());
 			existingVendor.setLocation(vendor.getLocation());
 
 			repo.save(existingVendor);
-			
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);	
+
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch(Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -96,13 +96,13 @@ public class VendorController {
 		try {
 			Vendor vendor = repo.findByCodeAndDeletedAtIsNull(code);
 
-			if(vendor == null) { 
+			if(vendor == null) {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 
 			vendor.setDeletedAt(new Date());
 			repo.save(vendor);
-			
+
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch(Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
