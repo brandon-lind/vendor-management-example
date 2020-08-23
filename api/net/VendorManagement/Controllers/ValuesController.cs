@@ -8,8 +8,8 @@ using VendorManagement.Data.Repos;
 
 namespace VendorManagement.Controllers
 {
-    [Route("/")]
     [ApiController]
+    [Route("/")]
     public class ValuesController : ControllerBase
     {
         private readonly ILogger<Vendor> logger;

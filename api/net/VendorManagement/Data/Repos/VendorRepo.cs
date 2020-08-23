@@ -18,7 +18,7 @@ namespace VendorManagement.Data.Repos
             connString = configuration.GetValue<string>("Database:VendorManagement:ConnectionString");
         }
 
-        internal IDbConnection DBConnection 
+        internal IDbConnection DBConnection
         {
             get { return new NpgsqlConnection(connString); }
         }
