@@ -1,7 +1,7 @@
 # Vendor Management Example
 
 A fictional project to practice creating a fully functional application use a
-variety of technologies such as Docker, Flyway, Postgesql, .NET Core, Java,
+variety of technologies such as Docker, Flyway, Postgresql, .NET Core, Java,
 Node, and React.
 
 ## Prerequisites
@@ -14,6 +14,8 @@ The project assumes you have the following installed and configured locally:
 - Maven v3.6+
 - Node.js v14+
 
+---
+
 ## Build It
 
 ### UI (React)
@@ -24,9 +26,13 @@ It's a standard Create React App.
 (cd ./ui/vendormgmt-react && npm i)
 ```
 
-### Java
+### Java API
 
 The Java API is a standard fair [Spring Boot](https://spring.io/projects/spring-boot) application using maven, so the normal process applies.
+
+>NOTE: The project uses Lombok for some automatic getter/setter action, so be sure to install any IDE extensions to enable support.
+> - For VSCode: [Lombok Annotions Support for VS Code](https://marketplace.visualstudio.com/items?itemName=GabrielBB.vscode-lombok)
+> - For Eclipse: Double click on the Lombok .jar in your .m2 directory after you have done an initial mvn clean install (~/.m2/repository/org/projectlombok/lombok/{version}/lombok-{version}.jar)
 
 From the command line:
 
@@ -34,10 +40,12 @@ From the command line:
 (cd ./api/java && mvn clean install)
 ```
 
-### .NET
+### .NET API
 
 From the command line:
 (cd ./api/net/VendorManagement && dotnet build)
+
+---
 
 ## Start It
 
@@ -49,7 +57,7 @@ To initialize and seed the database, execute the docker compose file in the infr
 docker-compose --f ./infrastructure/docker-compose.yml up
 ```
 
-### Java
+### Java API
 
 The Java API is a standard fair [Spring Boot](https://spring.io/projects/spring-boot) application using maven, so the normal process applies.
 From the command line:
@@ -58,11 +66,7 @@ From the command line:
 (cd ./api/java && mvn spring-boot:run)
 ```
 
-It uses Lombok for some automatic getter/setter action, so be sure to install any IDE extensions to enable support.
- - For VSCode: [Lombok Annotions Support for VS Code](https://marketplace.visualstudio.com/items?itemName=GabrielBB.vscode-lombok)
- - For Eclipse: Double click on the Lombok .jar in your .m2 directory after you have done an initial mvn clean install (~/.m2/repository/org/projectlombok/lombok/{version}/lombok-{version}.jar)
-
-### .NET
+### .NET API
 
 The .NET API is also standard fair. Fire it up using the [dotnet CLI run command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run)
 
